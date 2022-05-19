@@ -4,6 +4,7 @@ import {
   Container,
   Divider,
   Input,
+  Spacer,
   Text,
 } from "@nextui-org/react";
 import type { NextPage } from "next";
@@ -51,7 +52,7 @@ const Home: NextPage = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <>
       <Head>
         <title>Elfinslayer Steam Collection Parser</title>
         <meta
@@ -61,10 +62,16 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Container fluid>
+      <Container
+        fluid
+        css={{
+          display: "flex",
+          height: "100vh",
+        }}
+      >
         <h1 className={styles.title}>Elfinslayers Steam Collection Parser</h1>
 
-        <p className={styles.description}>
+        <Text>
           This tool is used to get the list of mod ids from a steam collection.
           I found it annoying when hosting game servers such as Conan Exiles or
           Space Engineers as they did not allow for the collection id when
@@ -74,7 +81,8 @@ const Home: NextPage = () => {
             Note: You must have the collection set to public for this tool to
             work!
           </b>
-        </p>
+        </Text>
+        <Spacer />
 
         <div className={styles.content}>
           <div className={styles.controls}>
@@ -93,7 +101,9 @@ const Home: NextPage = () => {
                 mods.map((item, i) => (
                   <Card key={i.toString()} css={{ marginBottom: "$10" }}>
                     <Card.Body css={{ py: "$10" }}>
-                      <Text b>{item.name}</Text>
+                      <Text b>
+                        {item.name} ({`${i + 1}/${mods.length + 1}`})
+                      </Text>
                       <Text i>By {item.author}</Text>
                       <Text>{item.id}</Text>
                     </Card.Body>
@@ -113,10 +123,12 @@ const Home: NextPage = () => {
             </div>
           </div>
         </div>
-      </Container>
 
-      <footer className={styles.footer}>Created by: Elfinslayer (2022)</footer>
-    </div>
+        <footer className={styles.footer}>
+          Created by: Elfinslayer (2022)
+        </footer>
+      </Container>
+    </>
   );
 };
 
