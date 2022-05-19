@@ -9,11 +9,11 @@ import {
 } from "@nextui-org/react";
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import styles from "../styles/Home.module.css";
 import axios from "axios";
-import debounce from "lodash.debounce";
 import { WorkshopItem } from "../helpers/types";
+import throttle from "lodash.throttle";
 
 const Home: NextPage = () => {
   // const test = "2809916332";
@@ -22,20 +22,39 @@ const Home: NextPage = () => {
   const [modIds, setModIds] = useState<string[] | null>(null);
   const [msg, setMsg] = useState<string | null>(null);
 
-  const getModIds = async () => {
-    try {
-      const { data } = await axios.post("api/scrape", { collectionId });
-      const wkshpItems: WorkshopItem[] = data.items;
+  // const getModIds = async () => {
+  //   try {
+  //     const { data } = await axios.post("api/scrape", { collectionId });
+  //     const wkshpItems: WorkshopItem[] = data.items;
 
-      setMods(wkshpItems);
-      setModIds(wkshpItems.map(({ id }) => id));
-      setMsg(null);
-    } catch (e) {
-      setMsg(
-        "Mod ID retrieval failed, please check if the collection is set to public!"
-      );
-    }
-  };
+  //     setMods(wkshpItems);
+  //     setModIds(wkshpItems.map(({ id }) => id));
+  //     setMsg(null);
+  //   } catch (e) {
+  //     setMsg(
+  //       "Mod ID retrieval failed, please check if the collection is set to public!"
+  //     );
+  //   }
+  // };
+
+  const getModIds = useMemo(
+    () =>
+      throttle(async () => {
+        try {
+          const { data } = await axios.post("api/scrape", { collectionId });
+          const wkshpItems: WorkshopItem[] = data.items;
+
+          setMods(wkshpItems);
+          setModIds(wkshpItems.map(({ id }) => id));
+          setMsg(null);
+        } catch (e) {
+          setMsg(
+            "Mod ID retrieval failed, please check if the collection is set to public!"
+          );
+        }
+      }, 10000),
+    [collectionId]
+  );
 
   const handleChange = (e: { target: { value: string } }) => {
     console.log(collectionId);
@@ -54,7 +73,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Elfinslayer Steam Collection Parser</title>
+        <title>Collectionizer by Elfinslayer</title>
         <meta
           name="description"
           content="A simple tool that gets all of the mod ids out of a steam collection."
@@ -67,9 +86,11 @@ const Home: NextPage = () => {
         css={{
           display: "flex",
           height: "100vh",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
-        <h1 className={styles.title}>Elfinslayers Steam Collection Parser</h1>
+        <h1 className={styles.title}>Collectionizer</h1>
 
         <Text>
           This tool is used to get the list of mod ids from a steam collection.
