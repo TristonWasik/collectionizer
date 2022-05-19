@@ -5,7 +5,6 @@ import {
   Divider,
   Input,
   Text,
-  Textarea,
 } from "@nextui-org/react";
 import type { NextPage } from "next";
 import Head from "next/head";
@@ -16,7 +15,7 @@ import debounce from "lodash.debounce";
 import { WorkshopItem } from "../helpers/types";
 
 const Home: NextPage = () => {
-  const test = "2809916332";
+  // const test = "2809916332";
   const [collectionId, setCollectionId] = useState<string | null>(null);
   const [mods, setMods] = useState<WorkshopItem[] | null>(null);
   const [modIds, setModIds] = useState<string[] | null>(null);
@@ -89,6 +88,7 @@ const Home: NextPage = () => {
           </div>
           <div className={styles.output}>
             <div className={styles.output_content}>
+              <p>Mods:</p>
               {mods &&
                 mods.map((item, i) => (
                   <Card id={i.toString()} css={{ marginBottom: "$10" }}>
@@ -107,7 +107,7 @@ const Home: NextPage = () => {
                 ))}
             </div>
             <div className={styles.output_content}>
-              <p>List of Mod IDs</p>
+              <p>Mod IDs:</p>
               {modIds && <p>{modIds.toString().replaceAll(",", ", ")}</p>}
               {msg && <p>msg</p>}
             </div>
