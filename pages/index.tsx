@@ -62,7 +62,7 @@ const Home: NextPage = () => {
       </Head>
 
       <Container fluid>
-        <h1 className={styles.title}>Elfinslayer's Steam Collection Parser</h1>
+        <h1 className={styles.title}>Elfinslayers Steam Collection Parser</h1>
 
         <p className={styles.description}>
           This tool is used to get the list of mod ids from a steam collection.
@@ -91,7 +91,7 @@ const Home: NextPage = () => {
               <p>Mods:</p>
               {mods &&
                 mods.map((item, i) => (
-                  <Card id={i.toString()} css={{ marginBottom: "$10" }}>
+                  <Card key={i.toString()} css={{ marginBottom: "$10" }}>
                     <Card.Body css={{ py: "$10" }}>
                       <Text b>{item.name}</Text>
                       <Text i>By {item.author}</Text>
