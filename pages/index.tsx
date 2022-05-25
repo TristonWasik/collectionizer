@@ -22,21 +22,6 @@ const Home: NextPage = () => {
   const [modIds, setModIds] = useState<string[] | null>(null);
   const [msg, setMsg] = useState<string | null>(null);
 
-  // const getModIds = async () => {
-  //   try {
-  //     const { data } = await axios.post("api/scrape", { collectionId });
-  //     const wkshpItems: WorkshopItem[] = data.items;
-
-  //     setMods(wkshpItems);
-  //     setModIds(wkshpItems.map(({ id }) => id));
-  //     setMsg(null);
-  //   } catch (e) {
-  //     setMsg(
-  //       "Mod ID retrieval failed, please check if the collection is set to public!"
-  //     );
-  //   }
-  // };
-
   const getModIds = useMemo(
     () =>
       throttle(async () => {
@@ -140,7 +125,7 @@ const Home: NextPage = () => {
             <div className={styles.output_content}>
               <p>Mod IDs:</p>
               {modIds && <p>{modIds.toString().replaceAll(",", ", ")}</p>}
-              {msg && <p>msg</p>}
+              {msg && <p>{msg}</p>}
             </div>
           </div>
         </div>
