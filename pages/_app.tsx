@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       const { stop } = ackeeInstance.record(
         "6c742ae0-9f87-4b28-a350-a3a8e45d787d",
         {
-          siteLocation: window.location.href,
+          siteLocation: "",
           siteReferrer: document.referrer,
         }
       );
