@@ -17,11 +17,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     if (typeof window !== "undefined") {
       const { stop } = ackeeInstance.record(
-        "6c742ae0-9f87-4b28-a350-a3a8e45d787d",
-        {
-          siteLocation: "",
-          siteReferrer: document.referrer,
-        }
+        "6c742ae0-9f87-4b28-a350-a3a8e45d787d"
       );
 
       return () => {
