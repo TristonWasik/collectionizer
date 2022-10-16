@@ -10,6 +10,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       .create("https://analytics.cap.elfinslayer.io", {
         detailed: false,
         ignoreLocalhost: true,
+        ignoreOwnVisits: false,
       })
       .record("6c742ae0-9f87-4b28-a350-a3a8e45d787d");
 

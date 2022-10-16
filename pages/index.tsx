@@ -42,7 +42,6 @@ const Home: NextPage = () => {
   );
 
   const handleChange = (e: { target: { value: string } }) => {
-    console.log(collectionId);
     setCollectionId(e.target.value);
   };
 
