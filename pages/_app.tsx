@@ -8,7 +8,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     const { stop } = ackeeTracker
       .create("https://analytics.cap.elfinslayer.io", {
-        detailed: false,
+        detailed: true,
         ignoreLocalhost: true,
         ignoreOwnVisits: false,
       })
