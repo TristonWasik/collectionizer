@@ -108,7 +108,7 @@ const Home: NextPage = () => {
                   <Card key={i.toString()} css={{ marginBottom: "$10" }}>
                     <Card.Body css={{ py: "$10" }}>
                       <Text b>
-                        {item.name} ({`${i + 1}/${mods.length + 1}`})
+                        {item.name} ({`${i + 1}/${mods.length}`})
                       </Text>
                       <Text i>By {item.author}</Text>
                       <Text>{item.id}</Text>

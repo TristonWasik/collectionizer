@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@nextui-org/react": "^1.0.0-beta.7",
+    "ackee-tracker": "^5.1.0",
     "axios": "^0.27.2",
     "cheerio": "^1.0.0-rc.10",
     "cors": "^2.8.5",
@@ -21,6 +22,7 @@
     "react-dom": "18.1.0"
   },
   "devDependencies": {
+    "@types/ackee-tracker": "^5.0.2",
     "@types/cors": "^2.8.12",
     "@types/lodash.debounce": "^4.0.7",
     "@types/lodash.throttle": "^4.1.7",
