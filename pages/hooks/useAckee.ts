@@ -30,16 +30,14 @@ export const useAckee = (
   ]);
 
   useEffect(() => {
-    if (ackeeInstance == null) {
+    if (!ackeeInstance) {
       console.warn(
         "Skipped record creation because useAckee has been called in a non-browser environment"
       );
       return;
     }
 
-    const hasPathname = pathname != null && pathname !== "";
-
-    if (hasPathname === false) {
+    if (!pathname.length) {
       console.warn(
         "Skipped record creation because useAckee has been called without pathname"
       );
