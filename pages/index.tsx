@@ -14,7 +14,7 @@ import styles from "../styles/Home.module.css";
 import axios from "axios";
 import { WorkshopItem } from "../helpers/types";
 import throttle from "lodash.throttle";
-import { ackeeInstance } from "./_app";
+import { ackeeInstance } from "./hooks/useAckee";
 
 const Home: NextPage = () => {
   // const test = "2809916332";
@@ -29,7 +29,7 @@ const Home: NextPage = () => {
         try {
           const { data } = await axios.post("api/scrape", { collectionId });
           const wkshpItems: WorkshopItem[] = data.items;
-          ackeeInstance.action("49e193a5-dc01-497b-812a-079b06ef71df", {
+          ackeeInstance?.action("49e193a5-dc01-497b-812a-079b06ef71df", {
             key: "Click",
             value: 1,
           });
@@ -109,7 +109,7 @@ const Home: NextPage = () => {
               <p>Mods:</p>
               {mods &&
                 mods.map((item, i) => (
-                  <Card key={i.toString()} css={{ marginBottom: "$10" }}>
+                  <Card key={i} css={{ marginBottom: "$10" }}>
                     <Card.Body css={{ py: "$10" }}>
                       <Text b>
                         {item.name} ({`${i + 1}/${mods.length}`})

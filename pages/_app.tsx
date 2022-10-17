@@ -1,31 +1,23 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { NextUIProvider } from "@nextui-org/react";
-import * as ackeeTracker from "ackee-tracker";
-import { useEffect } from "react";
-
-export const ackeeInstance = ackeeTracker.create(
-  "https://analytics.cap.elfinslayer.io",
-  {
-    detailed: true,
-    ignoreLocalhost: true,
-    ignoreOwnVisits: false,
-  }
-);
+import { useAckee } from "./hooks/useAckee";
+import { useRouter } from "next/router";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const { stop } = ackeeInstance.record(
-        "6c742ae0-9f87-4b28-a350-a3a8e45d787d"
-      );
-
-      return () => {
-        stop();
-      };
+  const router = useRouter();
+  useAckee(
+    router.pathname,
+    {
+      server: "https://analytics.cap.elfinslayer.io",
+      domainId: "6c742ae0-9f87-4b28-a350-a3a8e45d787d",
+    },
+    {
+      detailed: true,
+      ignoreLocalhost: false,
+      ignoreOwnVisits: false,
     }
-  }, []);
-
+  );
   return (
     <NextUIProvider>
       <Component {...pageProps} />
