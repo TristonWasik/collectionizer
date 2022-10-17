@@ -1,7 +1,7 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import { NextUIProvider } from "@nextui-org/react";
-import { useAckee } from "./hooks/useAckee";
+import { useAckee } from "use-ackee";
 import { useRouter } from "next/router";
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -14,7 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     },
     {
       detailed: true,
-      ignoreLocalhost: false,
+      ignoreLocalhost: true,
       ignoreOwnVisits: false,
     }
   );

@@ -14,7 +14,7 @@ import styles from "../styles/Home.module.css";
 import axios from "axios";
 import { WorkshopItem } from "../helpers/types";
 import throttle from "lodash.throttle";
-import { ackeeInstance } from "./hooks/useAckee";
+import { ackeeInstance } from "use-ackee";
 
 const Home: NextPage = () => {
   // const test = "2809916332";
@@ -29,6 +29,7 @@ const Home: NextPage = () => {
         try {
           const { data } = await axios.post("api/scrape", { collectionId });
           const wkshpItems: WorkshopItem[] = data.items;
+
           ackeeInstance?.action("49e193a5-dc01-497b-812a-079b06ef71df", {
             key: "Click",
             value: 1,
