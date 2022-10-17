@@ -55,3 +55,5 @@ export const useAckee = (
     }).stop;
   }, [ackeeInstance, pathname, environment.domainId]);
 };
+
+export default useAckee;
